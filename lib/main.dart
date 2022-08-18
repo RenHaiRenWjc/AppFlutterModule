@@ -9,8 +9,7 @@ void main() {
 }
 
 ///创建一个自定义的Binding，继承和with的关系如下，里面什么都不用写
-class CustomFlutterBinding extends WidgetsFlutterBinding
-    with BoostFlutterBinding {}
+class CustomFlutterBinding extends WidgetsFlutterBinding with BoostFlutterBinding {}
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -20,20 +19,6 @@ class MyApp extends StatefulWidget {
 }
 
 class MyAppState extends State<MyApp> {
-  Map<String, FlutterBoostRouteFactory> routerMap = {
-    'mainPage': (settings, id) {
-      return CupertinoPageRoute(
-          settings: settings,
-          builder: (_) {
-            Map<String, Object> map = settings.arguments as Map<String, Object>;
-            String data = map['data'] as String;
-            return SimplePage(
-              data: data,
-            );
-          });
-    },
-  };
-
   @override
   Widget build(BuildContext context) {
     return FlutterBoostApp(
@@ -59,6 +44,21 @@ class MyAppState extends State<MyApp> {
       },
     );
   }
+
+  //注册的路由表
+  Map<String, FlutterBoostRouteFactory> routerMap = {
+    'mainPage': (settings, id) {
+      return CupertinoPageRoute(
+          settings: settings,
+          builder: (_) {
+            Map<String, Object> map = settings.arguments as Map<String, Object>;
+            String data = map['data'] as String;
+            return SimplePage(
+              data: data,
+            );
+          });
+    },
+  };
 }
 
 class MainPage extends StatelessWidget {
@@ -77,8 +77,11 @@ class SimplePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('SimplePage')),
-    );
+    return const Center(
+        child: Text(
+          'Hello, world!',
+          textDirection: TextDirection.ltr,
+        ),
+      );
   }
 }
