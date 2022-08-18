@@ -9,10 +9,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      initialRoute: "home",
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      onGenerateRoute: (RouteSettings settings) {
+        return MaterialPageRoute(builder: (context) {
+          String? routeName = settings.name;
+          return const SecondPage();
+        });
+      },
+      routes: {
+        "tip_Route": (context) => const TipRoute(text: "tip_Route"),
+        "test_tip_Route": (context) => const TestTipRote(),
+        "home": (context) => const MyHomePage(title: 'Flutter Demo Home Page')
+      },
     );
   }
 }
@@ -51,6 +62,19 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            TextButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) {
+                            return const TestTipRote();
+                          },
+                          fullscreenDialog: true));
+                },
+                child: const Text("open "
+                    "new "
+                    "route"))
           ],
         ),
       ),
@@ -59,6 +83,72 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+}
+
+class SecondPage extends StatelessWidget {
+  const SecondPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("SecondPage"),
+      ),
+      body: const Center(
+        child: Text("SecondPage Center"),
+      ),
+    );
+  }
+}
+
+class TipRoute extends StatelessWidget {
+  const TipRoute({Key? key, required this.text}) : super(key: key);
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    var args = ModalRoute.of(context)?.settings.arguments;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("提示"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(18),
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Text("args==$args"),
+              ElevatedButton(
+                  onPressed: () => Navigator.pop(context, "返回值：1"),
+                  child: const Text("返回"))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TestTipRote extends StatelessWidget {
+  const TestTipRote({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () async {
+          // var result = await Navigator.push(context, MaterialPageRoute(
+          //     builder: (context) {
+          //   return const TipRoute(text: "参数提示xxx");
+          // }
+          //     ));
+          // print("路由返回值：result = $result");
+          await Navigator.pushNamed(context, "tip_Route", arguments: "参数提示xxx");
+        },
+        child: const Text("打开提示"),
+      ),
     );
   }
 }
