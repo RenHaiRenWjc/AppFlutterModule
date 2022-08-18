@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_boost/flutter_boost.dart';
+import 'package:my_flutter_module/setting/setting_page.dart';
 
 import 'flutter_page.dart';
 
@@ -53,6 +53,13 @@ class MyAppState extends State<MyApp> {
 
   //注册的路由表
   Map<String, FlutterBoostRouteFactory> routerMap = {
+    'settingPage': (settings, id) {
+      return PageRouteBuilder<dynamic>(
+          settings: settings,
+          pageBuilder: (_, __, ___) => SettingPage(
+                params: settings.arguments as Map<dynamic, dynamic>?,
+              ));
+    },
     'mainPage': (settings, id) {
       return PageRouteBuilder<dynamic>(
         settings: settings,
@@ -61,19 +68,9 @@ class MyAppState extends State<MyApp> {
           uniqueId: "uniqueId",
         ),
       );
-      // return CupertinoPageRoute(
-      //     settings: settings,
-      //     builder: (_) {
-      //       Map<String, Object> map = settings.arguments as Map<String, Object>;
-      //       String data = map['data'] as String;
-      //       return MainPage(
-      //         data: data,
-      //       );
-      //     });
     },
   };
 }
-
 
 class MainPage extends StatelessWidget {
   const MainPage({required Object data});

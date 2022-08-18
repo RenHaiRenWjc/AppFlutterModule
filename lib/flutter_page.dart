@@ -13,8 +13,7 @@ class FlutterRouteWidget extends StatefulWidget {
   State<FlutterRouteWidget> createState() => _FlutterRouteWidgetState();
 }
 
-class _FlutterRouteWidgetState extends State<FlutterRouteWidget>
-    with PageVisibilityObserver {
+class _FlutterRouteWidgetState extends State<FlutterRouteWidget> with PageVisibilityObserver {
   static const String _kTag = 'page_visibility';
   bool withContainer = true;
 
