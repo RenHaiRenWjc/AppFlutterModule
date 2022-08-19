@@ -25,7 +25,7 @@ class MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return FlutterBoostApp(
-      initialRoute: "mainPage",
+      initialRoute: "settingPage",
       routeFactory,
       appBuilder: appBuilder,
     );
@@ -70,29 +70,4 @@ class MyAppState extends State<MyApp> {
       );
     },
   };
-}
-
-class MainPage extends StatelessWidget {
-  const MainPage({required Object data});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text('Main Page')),
-    );
-  }
-}
-
-class SimplePage extends StatelessWidget {
-  const SimplePage({required Object data});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Text(
-        'Hello, world!',
-        textDirection: TextDirection.ltr,
-      ),
-    );
-  }
 }

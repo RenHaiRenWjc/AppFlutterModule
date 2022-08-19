@@ -17,32 +17,40 @@ class RegisterRouteWidgetState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         title: const Text("设置"),
+        centerTitle: true,
+        backgroundColor: Colors.black,
       ),
       body: SingleChildScrollView(
-        child: Container(
-          margin: const EdgeInsets.all(24.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                margin: const EdgeInsets.only(left: 8.0, top: 10.0, bottom: 20),
-                child: const Text("账号绑定"),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Container(
+              margin: const EdgeInsets.only(left: 20.0, top: 10.0, bottom: 20),
+              child: const Text(
+                "账号绑定",
+                style: TextStyle(fontSize: 16.0, color: Colors.white70),
               ),
-              InkWell(
-                child: Container(
-                  padding: const EdgeInsets.all(8.0),
-                  margin: const EdgeInsets.all(8.0),
-                  child: const Text(
-                    '手机绑定',
-                    style: TextStyle(fontSize: 22.0, color: Colors.white),
+            ),
+            Row(
+              children: [
+                InkWell(
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    color: Colors.black54,
+                    child: const Text(
+                      '手机绑定',
+                      style: TextStyle(fontSize: 20.0, color: Colors.white),
+                    ),
                   ),
+                  onTap: () => {},
                 ),
-                onTap: () => {},
-              )
-            ],
-          ),
+                Text('手机号：158xxx')
+              ],
+            ),
+          ],
         ),
       ),
     );
