@@ -69,8 +69,32 @@ class _MainMePageState extends State<MainMePage> with Lifecycle {
                     ),
                     const SizedBox(
                       height: 20,
+                    ),
+                    Text(
+                      viewModel.hasLogin ? viewModel.userInfo.nickname ?? "" : "Login",
+                      style: const TextStyle(fontSize: 18, color: Colors.black, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 20),
+
+                    /// 积分
+                    Visibility(visible: viewModel.hasLogin, child: Text("积分：${viewModel.userInfo.coinCount}")),
+                    const SizedBox(
+                      height: 20,
                     )
                   ],
+                ),
+              ),
+              Positioned(
+                /// 退出登录
+                child: Offstage(
+                  offstage: !viewModel.hasLogin,
+                  child: GestureDetector(
+                    child: const Icon(
+                      Icons.exit_to_app,
+                      color: Colors.black,
+                      size: 24,
+                    ),
+                  ),
                 ),
               ),
             ],

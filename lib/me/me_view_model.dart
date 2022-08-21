@@ -14,7 +14,7 @@ class MeViewModel extends ChangeNotifier with LifecycleObserver {
 
   bool get hasLogin => _hasLogin;
 
-  set isLogin(bool value) {
+  set hasLogin(bool value) {
     _hasLogin = value;
     notifyListeners();
   }
