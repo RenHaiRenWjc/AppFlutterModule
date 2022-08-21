@@ -33,6 +33,19 @@ dependencies:
       url: 'https://github.com/alibaba/flutter_boost.git'
       ref: '4.0.1'
 
+  #生命周期
+  flutter_lifecycle_aware: ^0.0.2
+
+  # 数据共享
+  provider: ^6.0.3
+
+  # 图片加载库
+  cached_network_image: ^3.2.1
+
+    #网络请求cookie
+  cookie_jar: ^3.0.1
+  dio_cookie_manager: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

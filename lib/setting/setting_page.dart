@@ -72,7 +72,6 @@ class RegisterRouteWidgetState extends State<SettingPage> {
                 )
               ],
             ),
-
           ],
         ),
       ),
