@@ -39,7 +39,7 @@ class RegisterRouteWidgetState extends State<SettingPage> {
                 InkWell(
                   child: Container(
                     padding: const EdgeInsets.all(20),
-                    color: Colors.black54,
+                    color: Colors.red,
                     child: const Text(
                       '手机绑定',
                       style: TextStyle(fontSize: 20.0, color: Colors.white),
@@ -47,9 +47,32 @@ class RegisterRouteWidgetState extends State<SettingPage> {
                   ),
                   onTap: () => {},
                 ),
-                Text('手机号：158xxx')
+                const Text(
+                  '手机号：158xxx9761 >',
+                  style: TextStyle(fontSize: 20.0, color: Colors.white),
+                )
               ],
             ),
+            Row(
+              children: [
+                InkWell(
+                  child: Container(
+                    padding: const EdgeInsets.all(20),
+                    color: Colors.red,
+                    child: const Text(
+                      '支付宝绑定',
+                      style: TextStyle(fontSize: 20.0, color: Colors.white),
+                    ),
+                  ),
+                  onTap: () => {},
+                ),
+                const Text(
+                  'wjc1111 >',
+                  style: TextStyle(fontSize: 20.0, color: Colors.white),
+                )
+              ],
+            ),
+
           ],
         ),
       ),
