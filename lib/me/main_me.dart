@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lifecycle_aware/lifecycle.dart';
 import 'package:my_flutter_module/me/me_view_model.dart';
+import 'package:my_flutter_module/me/preview_page.dart';
 import 'package:my_flutter_module/utils/ImageLoadUtil.dart';
+import 'package:my_flutter_module/utils/router_hepler.dart';
 import 'package:my_flutter_module/utils/screen_util.dart';
 import 'package:provider/provider.dart';
 
@@ -22,6 +24,7 @@ class _MainMePageState extends State<MainMePage> with Lifecycle {
       providers: [ChangeNotifierProvider(create: (context) => meViewModel)],
       builder: (context, child) {
         return Scaffold(
+          ///一个路由页的骨架
           body: _bodyContent(context, meViewModel),
         );
       },
@@ -68,7 +71,8 @@ class _MainMePageState extends State<MainMePage> with Lifecycle {
   }
 
   /// 多语言
-  Widget _itemChildLanguage(MeViewModel meViewModel, {required ValueChanged<int?> onChanged}) {
+  Widget _itemChildLanguage(MeViewModel meViewModel,
+      {required ValueChanged<int?> onChanged}) {
     return Column(
       children: [
         Row(
@@ -187,6 +191,7 @@ class _MainMePageState extends State<MainMePage> with Lifecycle {
         ScreenUtil.get().appBarHeight + ScreenUtil.get().statusBarHeight;
 
     return Container(
+      // 组合类容器
       color: Theme.of(context).colorScheme.primary,
       width: double.infinity,
       child: Consumer<MeViewModel>(
@@ -197,9 +202,7 @@ class _MainMePageState extends State<MainMePage> with Lifecycle {
                 /// 用户信息
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: topBarHeight,
-                    ),
+                    SizedBox(height: topBarHeight),
                     GestureDetector(
                       onTap: () => {},
                       child: Hero(
@@ -224,7 +227,7 @@ class _MainMePageState extends State<MainMePage> with Lifecycle {
                     Text(
                       viewModel.hasLogin
                           ? viewModel.userInfo.nickname ?? ""
-                          : "Login",
+                          : "登录",
                       style: const TextStyle(
                           fontSize: 18,
                           color: Colors.black,
@@ -260,5 +263,17 @@ class _MainMePageState extends State<MainMePage> with Lifecycle {
         },
       ),
     );
+  }
+
+  ///  点击事件
+  void actionUserIcon(BuildContext context, MeViewModel meViewModel) async {
+    if (meViewModel.hasLogin) {
+      // 放大
+      RouterHelper.push(context, PreviewPage(meViewModel.userInfo.icon ?? ""),
+          fullscreenDialog: true);
+    } else {
+      // 去登录
+
+    }
   }
 }
