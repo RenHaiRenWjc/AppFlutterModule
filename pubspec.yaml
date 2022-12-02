@@ -51,6 +51,9 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
 
+  # json 转对象
+  json_model: ^1.0.0
+  json_serializable: ^6.3.1
 
 
 # For information on the generic Dart part of this file, see the
